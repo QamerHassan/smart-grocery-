@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Bread",
+        "price": 50,
+        "image": "/images/bread.jpg"
+    },
+    {
+        "name": "Butter",
+        "price": 120,
+        "image": "/images/butter.jpg"
+    },
+    {
+        "name": "Cheese",
+        "price": 150,
+        "image": "/images/cheese.jpg"
+    },
+    {
+        "name": "Jam",
+        "price": 80,
+        "image": "/images/jam.jpg"
+    },
+    {
+        "name": "Milk",
+        "price": 60,
+        "image": "/images/milk.jpg"
+    },
+    {
+        "name": "Yogurt",
+        "price": 90,
+        "image": "/images/yogurt.jpg"
+    },
+    {
+        "name": "Pepsi",
+        "price": 100,
+        "image": "/images/pepsi.jpg"
+    },
+    {
+        "name": "Fries",
+        "price": 70,
+        "image": "/images/fries.jpg"
+    },
+    {
+        "name": "Burger",
+        "price": 180,
+        "image": "/images/burger.jpg"
+    }
+]

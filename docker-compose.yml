@@ -1,0 +1,69 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    container_name: smartgrocery_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:80
+    depends_on:
+      - backend
+    networks:
+      - smartnet
+
+  backend:
+    build: ./backend
+    container_name: smartgrocery_backend
+    ports:
+      - "5005:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=smartgrocery;Username=postgres;Password=admin
+      PythonService__BaseUrl: http://python:8000
+    depends_on:
+      - db
+      - python
+    networks:
+      - smartnet
+
+  python:
+    build: ./recommendation
+    container_name: smartgrocery_recommendations
+    ports:
+      - "8000:8000"
+    networks:
+      - smartnet
+
+  db:
+    image: postgres:15
+    container_name: smartgrocery_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: smartgrocery
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - smartnet
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local
+      PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      - smartnet
+
+networks:
+  smartnet:
+
+volumes:
+  pgdata:
